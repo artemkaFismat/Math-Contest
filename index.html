@@ -18,6 +18,10 @@
         header, #score, #question, #button {
             font-family: 'Rubik Mono One'
         }
+        #score, #question {
+            display: inline-block;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -25,12 +29,13 @@
         <div class="text-3xl ml-8 mt-10 text-[#8774E1]">Math Contest</div>
     </header>
 
-    <div class="mb-12">
-        <span class="text-5xl ml-40 mt-10" id="score">0</span>
+    <div class="mb-12 flex justify-center">
+        <!--ml-40-->
+        <span class="text-5xl mt-10 mr-8" id="score">0</span>
     </div>
    
     <main>
-        <span class="text-2xl ml-32 mt-10 font-semibold" id="question"></span>
+        <span class="text-2xl ml-32 mt-10 font-semibold flex justify-center" id="question"></span>
  
         <div class="mt-12 ml-8">
             <label for="hs-trailing-button-add-on" class="sr-only">Label</label>
