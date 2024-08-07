@@ -22,12 +22,19 @@
             display: inline-block;
             text-align: center;
         }
+        #errorImage {
+            display:none;
+        }
     </style>
 </head>
 <body>
     <header class="mb-8">
         <div class="text-3xl ml-8 mt-10 text-[#8774E1]">Math Contest</div>
     </header>
+
+    <div class="flex  absolute">
+        <img class="scale-150 shadow-2xl" id="errorImage" src="https://i.postimg.cc/JnqYLjmj/image-1.png" alt="Ошибка" />
+    </div>
 
     <div class="mb-12 flex justify-center">
         <!--ml-40-->
@@ -42,7 +49,7 @@
             <div class="flex rounded-lg shadow-sm">
               <input type="text" id="answer" name="hs-trailing-button-add-on" class="text-xl text-black py-3 px-4 block w-48 font-semibold shadow-sm rounded-s-lg text-sm focus:z-10 disabled:opacity-50 disabled:pointer-events-none">
               <button type="button" onClick="checkAnswer()" id="button" class="text-xl py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm rounded-e-md border border-transparent bg-[#8774E1] text-white hover:bg-[#634cd9] focus:outline-none focus:bg-[#634cd9] disabled:opacity-50 disabled:pointer-events-none">
-                sell
+                send
               </button>
             </div>
         </div> 
@@ -64,9 +71,17 @@
                 if (userAnswer === currentQuestion.answer) {
                     score++;
                     document.getElementById('score').innerText = score;
+                } else {
+                    // Показываем изображение на 2 секунды
+                    const errorImage = document.getElementById('errorImage');
+                    errorImage.style.display = 'block';
+                    setTimeout(() => {
+                        errorImage.style.display = 'none';
+                    }, 2000);
                 }
                 generateQuestion();
             }
+
             window.onload = generateQuestion;
         </script>
     </main>
