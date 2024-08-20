@@ -1,25 +1,25 @@
 package main
 
 import (
-    "html/template"
+    "github.com/gin-gonic/gin"
     "net/http"
-    "os"
 )
 
-var tpl = template.Must(template.ParseFiles("index.html"))
-
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-    tpl.Execute(w, nil)
-}
-
 func main() {
-    port := os.Getenv("PORT")
-    if port == "" {
-        port = "3000"
+    r := gin.Default()
+
+    r.LoadHTMLGlob("templates/*")
+
+
+    r.GET("/", func(c *gin.Context) {
+        c.HTML(http.StatusOK, "index.html", gin.H{
+            "Name": "World",
+        })
+    })
+
+    err := r.Run(":5001")
+    if err != nil {
+        panic(err)
     }
-
-    mux := http.NewServeMux()
-
-    mux.HandleFunc("/", indexHandler)
-    http.ListenAndServe(":"+port, mux)
 }
+
